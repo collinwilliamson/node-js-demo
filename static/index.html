@@ -76,7 +76,7 @@ navigation">
   <!-- /.container -->
   <script>
     (function () {
-      const p = document.createElement("p");
+      const temp = document.createElement("temp");
       const weatherDiv = document.querySelector("#weather")
 
       var xhr = new XMLHttpRequest();
@@ -86,8 +86,12 @@ navigation">
           // Note: .response instead of .responseText
           const data = JSON.parse(this.responseText);
           console.log(data);
-          p.textContent = data.
-          weatherDiv.appendChild(p);
+          const myTemplate = `
+          <h3>${data.currentWeather.date}<h3>
+          <h4>Current Weather: ${data.currentWeather.temperature} and ${data.currentWeather.text}</h4>
+          <h4>Current Location: ${data.currentWeather.location}</h4>
+          `;
+          weatherDiv.innerHTML = myTemplate;
         }
       };
       xhr.send();
