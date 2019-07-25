@@ -76,7 +76,21 @@ navigation">
   <!-- /.container -->
   <script>
     (function () {
+      const p = document.createElement("p");
+      const weatherDiv = document.querySelector("#weather")
 
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/weather.json', true);
+      xhr.onload = function (e) {
+        if (this.status == 200) {
+          // Note: .response instead of .responseText
+          const data = JSON.parse(this.responseText);
+          console.log(data);
+          p.textContent = data.
+          weatherDiv.appendChild(p);
+        }
+      };
+      xhr.send();
     })();
   </script>
 </body>
